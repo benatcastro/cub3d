@@ -1,34 +1,54 @@
-NAME		=	cub3d
-INC			=	-I includes/ -I mlx/
+NAME	=	cub3d
+42LIB	=	libraries/42lib.a
+
+## COMPILING AND LINKING RELATED VARIABLES ##
+AR = ar rc
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra
+SANITIZE = -fsanitize=address -g3
+RM = rm -f
+#############################################
+
+INCLUDES =	-I includes/	\
+			-I	mlx
+
+OBJDIR		=	objs
+SRCDIR		=	src
+
+SRCDIRS		:=	$(shell find $(SRCDIR) -name '*.c' -exec dirname {} \; | uniq)
+SRCS		:=	$(shell find $(SRCDIR) -name '*.c')
+OBJS		:=	$(patsubst %.c,$(OBJDIR)/%.o, $(shell echo $(SRCS) | cut -f2))
+
+#############################################
 
 #.SILENT:
-all: $(NAME)
 
-$(NAME):$(MLX)
-	mkdir -p libraries
-	make -C mlx/ 2> mlx_logs
-	rm mlx_logs
-	$(CC) $(CFLAGS) src/main.c -L libraries/ $(INC)
+all:
+	echo $(SRCDIRS)
+test: $(NAME)
 
+$(NAME) : buildtree $(OBJS)
+	$(CC) $(OBJS) $(CFLAGS) $(INCLUDES) libraries/*
+
+$(OBJDIR)/%.o: %.c
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 clean:
-	make clean -C mlx
+	rm -rf $(OBJDIR)
 
-#colors
-BLK	=	\e[0;30m
-RED	=	\e[0;31m
-GRN	=	\e[0;32m
-YEL	=	\e[0;33m
-BLU	=	\e[0;34m
-MAG	=	\e[0;35m
-CYN	=	\e[0;36m
-WHT	=	\e[0;37m
+fclean: clean
+	$(RM) $(NAME)
 
-B_BLK	=	\e[1;30m
-B_RED	=	\e[1;31m
-B_GRN	=	\e[1;32m
-B_YEL	=	\e[1;33m
-B_BLU	=	\e[1;34m
-B_MAG	=	\e[1;35m
-B_CYN	=	\e[1;36m
-B_WHT	=	\e[1;37m
-NC	=	\e[0m
+re: fclean all
+
+buildtree:
+	@$(call mk_dir)
+
+define mk_dir
+	mkdir -p $(OBJDIR)/;		\
+	for dir in $(SRCDIRS);	\
+	do	\
+		mkdir -p $(OBJDIR)/$$dir;	\
+	done
+endef
+
+.PHONY: all clean fclean re bonus ext
