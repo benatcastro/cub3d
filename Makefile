@@ -1,5 +1,7 @@
 NAME	=	cub3d
 42LIB	=	libraries/42lib.a
+TEST	=	test
+TEST2	=	test
 
 ## COMPILING AND LINKING RELATED VARIABLES ##
 AR = ar rc
@@ -23,12 +25,12 @@ OBJS		:=	$(patsubst %.c,$(OBJDIR)/%.o, $(shell echo $(SRCS) | cut -f2))
 
 #.SILENT:
 
-all:
-	echo $(SRCDIRS)
-test: $(NAME)
+all: $(TEST) $(NAME)
 
-$(NAME) : buildtree $(OBJS)
-	$(CC) $(OBJS) $(CFLAGS) $(INCLUDES) libraries/*
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) libraries/* -o $(NAME)
+
+$(TEST): buildtree $(OBJS)
 
 $(OBJDIR)/%.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
