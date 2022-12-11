@@ -6,16 +6,18 @@
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 18:08:38 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/11 00:07:09 by bena             ###   ########.fr       */
+/*   Updated: 2022/12/11 02:28:16 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "structs.h"
+#include <stdio.h>
 
 int	main(void)
 {
 	t_mlx	mlx;
 
+	printf("Hello Makefile!\n");
 	(void)mlx;
 }
