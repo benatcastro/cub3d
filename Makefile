@@ -2,20 +2,24 @@ NAME			=	cub3d
 42LIB			=	libraries/42lib.a
 
 ## COMPILING AND LINKING RELATED VARIABLES ##
-AR = ar rc
-CC = gcc
-CFLAGS = -Wall -Werror -Wextra
-SANITIZE = -fsanitize=address -g3
-RM = rm -f
+AR				=	ar rc
+CC 				=	gcc
+CFLAGS			=	-Wall -Werror -Wextra
+SANITIZE 		=	-fsanitize=address -g3
+LIBFLAGS		=	-L $(LIBRARIES)/
+INCFLAG			=	-I $(INCLUDES)/
+RM				=	rm -rf
 #############################################
 
 INCLUDES =	-I includes/	\
 			-I	src/mlx
 
 ##########EXCEPTIONS###########
-EXCEPT_FILES	=
+EXCEPT_FILES	=	test.c
 EXCEPT_DIRS		=	mlx
 #########DIRECTORY DECLARATION###
+INCLUDES		=	includes
+LIBRARIES		=	libraries
 OBJDIR			=	objs
 SRCDIR			=	src
 
@@ -23,38 +27,52 @@ SRCDIR			=	src
 EXCEPT_DIRS		:=	$(foreach dir, $(EXCEPT_DIRS), $(shell find $(SRCDIR) -type d -name '$(dir)'))
 EXCEPT_FILES	:=	$(foreach file, $(EXCEPT_FILES), $(shell find $(SRCDIR) -name '$(file)'))
 
-############CREATING OBJS##############
+############CREATING ALL OBJS##############
 SRCDIRS			:=	$(shell find $(SRCDIR) -name '*.c' -exec dirname {} \; | uniq)
 SRCDIRS			:=	$(filter-out $(EXCEPT_DIRS), $(SRCDIRS))
 OBJDIRS			:=	$(addprefix $(OBJDIR), $(shell echo $(SRCDIRS) | sed 's/$(SRCDIR)//g'))
 SRCS			:=	$(foreach dir, $(SRCDIRS), $(shell find $(dir) -name '*.c'))
 SRCS			:=	$(filter-out $(EXCEPT_FILES),$(SRCS))
 OBJS			:=	$(patsubst %.c, $(OBJDIR)%.o, $(shell echo $(SRCS) | sed 's/$(SRCDIR)//g'))
+##############PROJECT DIR#############
+42LIB_DIR		=	42lib
+PROJECT_DIR		=	cub3d
+
+##############PROJECT OBJS#############
+42LIB_OBJS		:=	$(shell find $(OBJDIR)/$(42LIB_DIR) -name '*.o')
+PROJECT_OBJS	:=	$(shell find $(OBJDIR)/$(PROJECT_DIR) -name '*.o')
+
 #$(addprefix $(OBJDIR)/, $(OBJDIRS),
 
-#$(info SRCDIRS=$(SRCDIRS))
+$(info 42LIB=$(42LIB_))
 #$(info OBJDIRS=$(OBJDIRS))
 #$(info EXECPT_DIRS=$(EXCEPT_DIRS))
 #$(info EXCEPT_FILES=$(EXCEPT_FILES))
 #$(info SRCS= $(SRCS))
 #$(info OBJS= $(OBJS))
+#42lib: $(42LIB) $(OBJS)
+
+$(42LIB): $(OBJS)
+	mkdir -p $(LIBRARIES)
+	$(AR) $(42LIB) $(42LIB_OBJS)
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS)%$^ -o $(NAME)
+$(NAME): $(42LIB) $(OBJS)
+	$(CC) $(CFLAGS) $(PROJECT_OBJS) $(INCFLAG) -o $(NAME)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@$(call mk_dir)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCFLAG) -c $< -o $@
 
 clean:
-	rm -rf $(OBJDIR)
+	$(RM) $(OBJDIR)
 
-re: clean all
+fclean: clean
+	$(RM) $(LIBRARIES)
+re: fclean all
 
 define mk_dir
-
-	mkdir -p $(OBJDIRS)/;
+	mkdir -p $(OBJDIRS);
 endef
 
 .PHONY: all clean fclean re bonus ext

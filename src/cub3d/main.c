@@ -6,15 +6,14 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 18:08:38 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/11 20:26:42 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/11 21:33:13 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
 #include "structs.h"
 #include <stdio.h>
 
 int	main(void)
 {
-	printf("Hello Makefile!\n");
+
 }
