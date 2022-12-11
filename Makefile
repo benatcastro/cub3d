@@ -39,26 +39,26 @@ OBJS			:=	$(patsubst %.c, $(OBJDIR)%.o, $(shell echo $(SRCS) | sed 's/$(SRCDIR)/
 PROJECT_DIR		=	cub3d
 
 ##############PROJECT OBJS#############
-42LIB_OBJS		:=	$(shell find $(OBJDIR)/$(42LIB_DIR) -name '*.o')
-PROJECT_OBJS	:=	$(shell find $(OBJDIR)/$(PROJECT_DIR) -name '*.o')
+42LIB_OBJS		:=	$(wildcard  $(OBJDIR)/$(42LIB_DIR)/*.o)
+PROJECT_OBJS	:=	$(wildcard $(OBJDIR)/$(PROJECT_DIR)/*.o)
 
 #$(addprefix $(OBJDIR)/, $(OBJDIRS),
 
-$(info 42LIB=$(42LIB_))
 #$(info OBJDIRS=$(OBJDIRS))
 #$(info EXECPT_DIRS=$(EXCEPT_DIRS))
 #$(info EXCEPT_FILES=$(EXCEPT_FILES))
 #$(info SRCS= $(SRCS))
 #$(info OBJS= $(OBJS))
 #42lib: $(42LIB) $(OBJS)
-
+$(MLX):
+	make -C src/mlx
 $(42LIB): $(OBJS)
 	mkdir -p $(LIBRARIES)
 	$(AR) $(42LIB) $(42LIB_OBJS)
 all: $(NAME)
 
-$(NAME): $(42LIB) $(OBJS)
-	$(CC) $(CFLAGS) $(PROJECT_OBJS) $(INCFLAG) -o $(NAME)
+$(NAME): $(42LIB) $(MLX) $(OBJS)
+	$(CC) $(CFLAGS) $(PROJECT_OBJS) $(INCFLAG) $(LIBFLAGS) -o $(NAME)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@$(call mk_dir)
