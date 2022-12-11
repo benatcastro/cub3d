@@ -1,7 +1,5 @@
 NAME	=	cub3d
 42LIB	=	libraries/42lib.a
-TEST	=	test
-TEST2	=	test
 
 ## COMPILING AND LINKING RELATED VARIABLES ##
 AR = ar rc
@@ -14,20 +12,23 @@ RM = rm -f
 INCLUDES =	-I includes/	\
 			-I	mlx
 
-EXECPT_DIRS	=	mlx
+EXECPT_DIRS	=	cub3d 42lib
 OBJDIR		=	objs
 SRCDIR		=	src
 
-SRCDIRS		:=	$(shell find $(SRCDIR) -name '*.c' -exec dirname {} \; | uniq)
-OBJDIRS		:=	$(shell find . -name '*.c' -exec dirname {} \; | uniq | sed 's/\/$(SRCDIR)//g' | sed 's/^\.\(.\)//g' | sed 's/$(EXECPT_DIRS)//g')
-OBJDIRS		:=	$(addprefix $(OBJDIR)/, $(OBJDIRS))
+
+EXECPT_DIRS	:=	$(foreach dir, $(EXECPT_DIRS), $(shell find $(SRCDIR) -type d -name '$(dir)'))
+SRCDIRS		:=	$(filter-out $(EXECPT_DIRS), $(SRCDIRS), $(shell find $(SRCDIR) -name '*.c' -exec dirname {} \; | uniq))
+OBJDIRS		:=	$(addprefix $(OBJDIR), $(shell echo $(SRCDIRS) | sed 's/$(SRCDIR)//g'))
 SRCS		:=	$(shell find $(SRCDIR) -name '*.c')
 OBJS		:=	$(patsubst %.c, $(OBJDIR)%.o, $(shell echo $(SRCS) | sed 's/$(SRCDIR)//g'))
-#$(patsubst %.c,$(OBJDIR)/%.o,
-#############################################
-DIRS = .dir
+#$(addprefix $(OBJDIR)/, $(OBJDIRS),
 #.SILENT:
 
+
+$(info SRCDIRS=$(SRCDIRS))
+$(info OBJDIRS=$(OBJDIRS))
+$(info TEST=$(EXECPT_DIRS))
 all: $(NAME)
 
 $(NAME): $(OBJS)
@@ -43,6 +44,7 @@ clean:
 re: clean all
 
 define mk_dir
+
 	mkdir -p $(OBJDIRS)/;
 endef
 
