@@ -14,39 +14,42 @@ RM = rm -f
 INCLUDES =	-I includes/	\
 			-I	mlx
 
+EXECPT_DIRS	=	mlx
 OBJDIR		=	objs
 SRCDIR		=	src
 
 SRCDIRS		:=	$(shell find $(SRCDIR) -name '*.c' -exec dirname {} \; | uniq)
+OBJDIRS		:=	$(shell find . -name '*.c' -exec dirname {} \; | uniq | sed 's/\/$(SRCDIR)//g' | sed 's/^\.\(.\)//g' | sed 's/$(EXECPT_DIRS)//g')
+OBJDIRS		:=	$(addprefix $(OBJDIR)/, $(OBJDIRS))
 SRCS		:=	$(shell find $(SRCDIR) -name '*.c')
 OBJS		:=	$(patsubst %.c,$(OBJDIR)/%.o, $(shell echo $(SRCS) | cut -f2))
 
 #############################################
-
+DIRS = .dir
 #.SILENT:
+test:
+	$(info SRCDIRS=$(SRCDIRS))
+	$(info OBJDIRS=$(OBJDIRS))
+#	echo $(OBJDIRS)
+#	$(info SRCS=$(SRCS))
+#	$(info OBJS=$(OBJS))
 
-all: $(TEST) $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) libraries/* -o $(NAME)
-
-$(TEST): buildtree $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 $(OBJDIR)/%.o: %.c
+	@$(call mk_dir)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
 clean:
 	rm -rf $(OBJDIR)
 
-fclean: clean
-	$(RM) $(NAME)
-
-re: fclean all
-
-buildtree:
-	@$(call mk_dir)
+re: clean all
 
 define mk_dir
-	mkdir -p $(OBJDIR)/;		\
+	mkdir -p $(OBJDIRS)/;		\
 	for dir in $(SRCDIRS);	\
 	do	\
 		mkdir -p $(OBJDIR)/$$dir;	\
