@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   keys.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/10 18:08:38 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/12 02:14:26 by bena             ###   ########.fr       */
+/*   Created: 2022/06/08 09:25:18 by almirand          #+#    #+#             */
+/*   Updated: 2022/07/25 00:14:18 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "structs.h"
-#include <stdio.h>
-#include "libft.h"
-#include "mlx.h"
+#ifndef  KEYS_H
+# define KEYS_H
 
-int	main(void)
-{
-	ft_putstr_fd(STRING, 1);
-}
+# define W				119
+# define A				97
+# define S				115
+# define D				100
+
+# define CLOSE_BUTTON	0
+# define ESC			65307
+
+#endif

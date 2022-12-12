@@ -13,7 +13,7 @@ CFLAGS=-O3
 
 NAME=../../libraries/libmlx.dylib
 
-INC=-I .
+INC=-I ../../includes/
 #OPTI=-Ounchecked
 .SILENT:
 all: $(NAME)

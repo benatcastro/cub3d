@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mlx.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/10 18:08:38 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/12 02:14:26 by bena             ###   ########.fr       */
+/*   Created: 2022/12/12 02:12:56 by bena              #+#    #+#             */
+/*   Updated: 2022/12/12 02:14:05 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "structs.h"
-#include <stdio.h>
-#include "libft.h"
-#include "mlx.h"
+#ifndef MLX_H
+# define MLX_H
 
-int	main(void)
-{
-	ft_putstr_fd(STRING, 1);
-}
+# include "mlx_mac.h"
+# include "mlx_linux.h"
+#endif
