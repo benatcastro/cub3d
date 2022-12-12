@@ -34,11 +34,11 @@ SRCDIRS			:=	$(shell find $(SRCDIR) -name '*.c' -exec dirname {} \; | uniq)
 SRCDIRS			:=	$(filter-out $(EXCEPT_DIRS), $(SRCDIRS))
 OBJDIRS			:=	$(addprefix $(OBJDIR), $(shell echo $(SRCDIRS) | sed 's/$(SRCDIR)//g'))
 SRCDEP			:=	$(wildcard $(INCDIR)/*h)
-DEPDIR			:=	$(shell dirname $(SRCDEP) | head -n1 | cut -d " " -f 1)
+DEPDIR			:=	$(OBJDIR)/dependencies
 SRCS			:=	$(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*c))
 SRCS			:=	$(filter-out $(EXCEPT_FILES),$(SRCS))
 OBJS			:=	$(patsubst %.c, $(OBJDIR)%.o, $(shell echo $(SRCS) | sed 's/$(SRCDIR)//g'))
-DEP				:=	$(patsubst %.h, $(OBJDIR)/%.d, $(SRCDEP))
+DEP				:=	$(subst $(INCDIR), $(DEPDIR), $(SRCDEP:.h=.d))
 ##############PROJECT DIRS#############
 42LIB_DIR		=	42lib
 PROJECT_DIR		=	cub3d
@@ -54,21 +54,21 @@ MLXOSRCS		?=
 MLXOBJS			?=
 
 #$(addprefix $(OBJDIR)/, $(OBJDIRS),
-#$(info DEP=$(DEP))
-#$(info DEPDIR=$(DEPDIR))
-#$(info SRCDEP=$(SRCDEP))
+$(info DEP=$(DEP))
+$(info DEPDIR=$(DEPDIR))
+$(info SRCDEP=$(SRCDEP))
 #$(info PROJECT_OBJS=$(PROJECT_OBJS))
-$(info MLXOS=$(MLXOS))
-$(info MLXDIR=$(MLXDIR))
-$(info MLXSRCS=$(MLXSRCS))
-$(info MLXSOBJS=$(MLXOBJS))
-$(info PROJECT_OBJS=$(PROJECT_OBJS))
+#$(info MLXOS=$(MLXOS))
+#$(info MLXDIR=$(MLXDIR))
+#$(info MLXSRCS=$(MLXSRCS))
+#$(info MLXSOBJS=$(MLXOBJS))
+#$(info PROJECT_OBJS=$(PROJECT_OBJS))
 
 #$(info EXECPT_DIRS=$(EXCEPT_DIRS))
 #$(info EXCEPT_FILES=$(EXCEPT_FILES))
 #$(info SRCS= $(SRCS))
 #$(info OBJS= $(OBJS))
-.SILENT:
+test:
 all: $(NAME)
 
 $(NAME): $(42LIB) $(MLX) $(OBJS) $(DEP)
