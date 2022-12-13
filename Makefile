@@ -75,7 +75,7 @@ $(NAME): $(OBJS) $(PROJECT_OBJS) $(42LIB)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c $(DEP)
 	$(MKDIR) $(@D)
-	$(CC) $(CFLAGS) $(INCFLAG) -c $^ -o $@
+	$(CC) $(CFLAGS) $(INCFLAG) $(DEP) $^ -o $@
 
 #$(42LIB): $(42LIB_OBJS) $(42LIB_OBJS)
 #	$(MKDIR) $(LIBRARIES)
