@@ -88,34 +88,14 @@ $(DANAE): $(DANAE_OBJS) $(OBJS)
 
 $(MLX):
 	$(MKDIR) libraries/
-	make -C src/mlx_darwin
-
-
-$(MLXOS):
-ifeq ($(UNAME), Darwin)
-	echo Darwin mlx
-else
-ifeq ($(UNAME), Linux)
-	$(eval MLXOS = LINUX)
-	$(eval MLXDIR = $(SRCDIR)/mlx_linux)
-	$(eval MLXSRCS = $(wildcard $(MLXDIR)/*c))
-	$(eval MLXSOBJS = $(eval MLXOBJS = $(patsubst %.c, %.o, MLXSRCS)))
-
-	$(info MLXOS=$(MLXOS))
-	$(info MLXDIR=$(MLXDIR))
-	$(info MLXSRCS=$(MLXSRCS))
-	$(info MLXSOBJS=$(MLXOBJS))
-else
-	printf "Your OS is not compatible with this program";
-endif
-endif
-	@$(call mlx_compiler)
+	make -C mlx/
 
 clean:
 	$(RM) $(OBJDIR)
-	make clean -C src/mlx_darwin
+	make clean -C mlx
 fclean: clean
 	$(RM) $(LIBRARIES)
+	make fclean -C mlx
 
 re: fclean all
 
