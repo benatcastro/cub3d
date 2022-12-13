@@ -17,7 +17,7 @@ MKDIR			=	mkdir -p
 INCLUDES 		=	-I includes/	\
 
 ##########EXCEPTIONS###########
-EXCEPT_FILES	=
+EXCEPT_FILES	=	test.c
 EXCEPT_DIRS		=	mlx_darwin mlx_linux
 #########DIRECTORY DECLARATION###
 INCDIR			=	includes
@@ -38,7 +38,7 @@ DEPDIR			:=	$(OBJDIR)/dependencies
 SRCS			:=	$(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*c))
 SRCS			:=	$(filter-out $(EXCEPT_FILES),$(SRCS))
 OBJS			:=	$(patsubst %.c, $(OBJDIR)%.o, $(shell echo $(SRCS) | sed 's/$(SRCDIR)//g'))
-DEP				:=	$(subst $(INCDIR), $(DEPDIR), $(SRCDEP:.h=.d))
+DEP				:=	$(subst $(OBJDIR), $(DEPDIR), $(OBJS:.o=.d))
 ##############PROJECT DIRS#############
 42LIB_DIR		=	42lib
 PROJECT_DIR		=	cub3d
@@ -68,25 +68,26 @@ $(info SRCDEP=$(SRCDEP))
 #$(info EXCEPT_FILES=$(EXCEPT_FILES))
 #$(info SRCS= $(SRCS))
 #$(info OBJS= $(OBJS))
-test:
 all: $(NAME)
 
-$(NAME): $(42LIB) $(MLX) $(OBJS) $(DEP)
-	$(CC) $(CFLAGS) $(PROJECT_OBJS) $(INCFLAG) $(LIBFLAGS) -o $(NAME)
+$(NAME): $(OBJS) $(PROJECT_OBJS) $(42LIB)
+	$(CC) $(CFLAGS) $(PROJECT_OBJS) $(INCFLAG) -o $(NAME)
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c
-	@$(call mk_dir)
-	$(CC) $(CFLAGS) $(INCFLAG) -c $< -o $@
+$(OBJDIR)/%.o: $(SRCDIR)/%.c $(DEP)
+	$(MKDIR) $(@D)
+	$(CC) $(CFLAGS) $(INCFLAG) -c $^ -o $@
+
+#$(42LIB): $(42LIB_OBJS) $(42LIB_OBJS)
+#	$(MKDIR) $(LIBRARIES)
+#	$(AR) $(42LIB) $(42LIB_OBJS)
 
 $(DEP): $(SRCDEP)
-	$(MKDIR) $(OBJDIR)/$(DEPDIR)/
-	$(CC) -c $< -o $@
+	$(MKDIR) $(@D)
+	$(CC) $(CFLAGS) $(INCFLAG) -MMD $< -o $@
 
-$(42LIB): $(OBJS)
-	$(MKDIR) $(LIBRARIES)
-	$(AR) $(42LIB) $(42LIB_OBJS)
 
-$(MLX):
+
+$(MlX): $(MLXOS):
 ifeq ($(UNAME), Darwin)
 	echo Darwin mlx
 else
