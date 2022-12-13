@@ -14,11 +14,11 @@ CFLAGS			=	-Wall -Werror -Wextra# $(SANITIZE)
 SANITIZE 		=	-fsanitize=address -g3
 LIBFLAG			=	$(LIBRARIES)/*
 INCFLAG			=	-I includes/ -I src/mlx/include/
-MLXFlAG			=	-lglfw -L "/Users/$$USER/.brew/opt/glfw/lib/"
+MLXFlAG			=	-framework OpenGL -framework AppKit
 
 ##########EXCEPTIONS###########
 EXCEPT_FILES	=	test.c
-EXCEPT_DIRS		=	parsing
+EXCEPT_DIRS		=	mlx
 #########DIRECTORY DECLARATION###
 LIBRARIES		=	libraries
 OBJDIR			=	objs
@@ -48,10 +48,7 @@ PROJECT_DIR		=	cub3d
 PROJECT_OBJS	:=	$(wildcard $(OBJDIR)/$(PROJECT_DIR)/*.o) $(wildcard $(OBJDIR)/$(PROJECT_DIR)/init/*.o)
 DANAE_OBJS		:=	$(wildcard $(OBJDIR)/$(DANAE_DIR)/*.o) $(wildcard $(OBJDIR)/$(DANAE_DIR)/raycasting/*.o)
 #############MLX VARS COMPILATION#######################
-MLXOS			?=
-MLXDIR			?=
-MLXOSRCS		?=
-MLXOBJS			?=
+
 
 #$(addprefix $(OBJDIR)/, $(OBJDIRS),
 #$(info DEP=$(DEP))
@@ -78,7 +75,7 @@ $(NAME): $(OBJS) $(42LIB) $(DANAE)
 $(DANAE): $(DANAE_OBJS) $(OBJS)
 	$(MKDIR) $(LIBRARIES)
 	$(AR) $(DANAE) $(DANAE_OBJS)
-	make -C mlx/
+	make -C src/mlx
 
 $(42LIB): $(42LIB_OBJS) $(OBJS)
 	$(MKDIR) $(LIBRARIES)
@@ -89,10 +86,10 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	$(CC) $(CFLAGS) $(INCFLAG) -c $< -o $@
 clean:
 	$(RM) $(OBJDIR)
-	make clean -C mlx
+	make clean -C src/mlx
 fclean: clean
 	$(RM) $(LIBRARIES)
-	make fclean -C mlx
+	make clean -C src/mlx
 
 re: fclean all
 

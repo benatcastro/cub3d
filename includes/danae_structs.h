@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   danae.h                                            :+:      :+:    :+:   */
+/*   danae_structs.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/13 02:50:34 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/13 09:54:53 by becastro         ###   ########.fr       */
+/*   Created: 2022/12/13 13:00:50 by becastro          #+#    #+#             */
+/*   Updated: 2022/12/13 13:02:20 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DANAE_H
-# define DANAE_H
+#ifndef DANAE_STRUCTS_H
+# define DANAE_STRUCTS_H
 
-# include <stdio.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include "libft.h"
-# include "struct.h"
-# include "mlx.h"
+typedef struct s_mlx
+{
 
-void	dn_init(u_int32_t height, u_int32_t width, char *title);
-void	dn_render_frame(void *frame_info);
-void	dn_error(void);
 
-#endif
+}	t_mlx;
+typedef struct s_frame
+{
+	struct s_mlx	*mlx;
+}	t_frame;
+
+#endif  d

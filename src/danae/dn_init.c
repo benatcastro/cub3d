@@ -6,23 +6,17 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 02:51:14 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/13 07:28:24 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/13 12:59:51 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "danae.h"
 #include "structs.h"
 
-
 void	dn_init(u_int32_t height, u_int32_t width, char *title)
 {
-	t_frame	frame;
+	(void)height;
+	(void)width;
+	(void)title;
 
-	frame.mlx->mlx = mlx_init(width, height, title, true);
-	if (!frame.mlx)
-		dn_error();
-	frame.mlx->mlx_img = mlx_new_image(frame.mlx->mlx, width, height);
-	mlx_image_to_window(frame.mlx->mlx, frame.mlx->mlx_img, width, height);
-	// mlx_loop_hook(mlx, NULL, NULL);
-	mlx_loop(frame.mlx->mlx);
 }
