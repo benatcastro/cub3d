@@ -35,6 +35,9 @@ $(MLX) : $(OBJF) $(OBJ_C) $(OBJ_M)
 
 $(OBJ_DIR)%.o: $(SRC_DIR_C)%.c
 	@mkdir -p $(OBJ_DIR)
+	ifeq ($(fidnstring $@, warning), )
+		@echo ===========test===========
+	endif
 	@$(CC) $(CC_FLAGS) $(INCLUDES) -c $< -o $@
 
 $(OBJ_DIR)%.o: $(SRC_DIR_M)%.m

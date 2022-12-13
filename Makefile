@@ -44,14 +44,14 @@ DANAE_DIR		=	danae
 PROJECT_DIR		=	cub3d
 
 ##############PROJECT OBJS#############
-42LIB_OBJS		:=	$(wildcard $(OBJDIR)/$(42LIB_DIR)/*.o)
 PROJECT_OBJS	:=	$(wildcard $(OBJDIR)/$(PROJECT_DIR)/*.o) $(wildcard $(OBJDIR)/$(PROJECT_DIR)/init/*.o)
 DANAE_OBJS		:=	$(wildcard $(OBJDIR)/$(DANAE_DIR)/*.o) $(wildcard $(OBJDIR)/$(DANAE_DIR)/raycasting/*.o)
 #############MLX VARS COMPILATION#######################
+42LIB_OBJS		:=	$(wildcard $(OBJDIR)/$(42LIB_DIR)/*.o)
 
 
 #$(addprefix $(OBJDIR)/, $(OBJDIRS),
-#$(info DEP=$(DEP))
+$(info 42OBJS=$(42LIB_OBJS))
 #$(info DEPDIR=$(DEPDIR))
 #$(info SRCDEP=$(SRCDEP))
 #$(info PROJECT_OBJS=$(PROJECT_OBJS))
@@ -65,6 +65,11 @@ DANAE_OBJS		:=	$(wildcard $(OBJDIR)/$(DANAE_DIR)/*.o) $(wildcard $(OBJDIR)/$(DAN
 #$(info EXCEPT_FILES=$(EXCEPT_FILES))
 #$(info SRCS= $(SRCS))
 #$(info OBJS= $(OBJS))
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	$(MKDIR) $(@D)
+	$(CC) $(CFLAGS) $(INCFLAG) -c $< -o $@
+
+
 all: $(NAME)
 
 
@@ -81,9 +86,6 @@ $(42LIB): $(42LIB_OBJS) $(OBJS)
 	$(MKDIR) $(LIBRARIES)
 	$(AR) $(42LIB) $(42LIB_OBJS)
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c
-	$(MKDIR) $(@D)
-	$(CC) $(CFLAGS) $(INCFLAG) -c $< -o $@
 clean:
 	$(RM) $(OBJDIR)
 	make clean -C src/mlx

@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 03:09:30 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/13 07:21:41 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/13 13:49:07 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # define WIDTH	1920
 # define HEIGHT	1080
+# define NAME	"cub3d"
 # define ENOTXPM "File has not an xpm extension"
 
 typedef struct s_file
