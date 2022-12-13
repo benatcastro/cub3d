@@ -3,66 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 02:48:49 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/09/20 16:05:19 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/12/13 07:13:19 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cubed.h"
+#include "cub3d.h"
 #include <stdlib.h>
 
-void	ft_freedata(t_vault *vault)
+void	ft_freedata(t_data *data)
 {
-	free(vault->north_texture);
-	free(vault->south_texture);
-	free(vault->west_texture);
-	free(vault->east_texture);
-	ft_doublefree(vault->map);
+	free(data->north_texture);
+	free(data->south_texture);
+	free(data->west_texture);
+	free(data->east_texture);
+	ft_doublefree(data->map);
 }
 
-void	ft_init_structs(t_vault *vault, t_color *color)
+void	ft_init_structs(t_data *data, t_color *color)
 {
-	vault->north_texture = NULL;
-	vault->south_texture = NULL;
-	vault->west_texture = NULL;
-	vault->east_texture = NULL;
-	vault->map = NULL;
-	vault->floor = -1;
-	vault->ceiling = -1;
+	data->north_texture = NULL;
+	data->south_texture = NULL;
+	data->west_texture = NULL;
+	data->east_texture = NULL;
+	data->map = NULL;
+	data->floor = -1;
+	data->ceiling = -1;
 	color->ceiling_integer = -1;
 	color->floor_integer = -1;
-	vault->data.forward = 0;
-	vault->data.back = 0;
-	vault->data.left = 0;
-	vault->data.right = 0;
-	vault->data.rotate_right = 0;
-	vault->data.rotate_left = 0;
-	vault->ray.dir_x = 0;
-	vault->ray.dir_y = 0;
-	vault->ray.plan_x = 0;
-	vault->ray.plan_y = 0;
 }
 
-void	ft_trim_data(t_vault *vault)
+void	ft_trim_data(t_data *data)
 {
 	char	*tmp;
 
-	tmp = ft_strdup(vault->north_texture);
-	free(vault->north_texture);
-	vault->north_texture = ft_strtrim(tmp, " \n");
+	tmp = ft_strdup(data->north_texture);
+	free(data->north_texture);
+	data->north_texture = ft_strtrim(tmp, " \n");
 	free(tmp);
-	tmp = ft_strdup(vault->south_texture);
-	free(vault->south_texture);
-	vault->south_texture = ft_strtrim(tmp, " \n");
+	tmp = ft_strdup(data->south_texture);
+	free(data->south_texture);
+	data->south_texture = ft_strtrim(tmp, " \n");
 	free(tmp);
-	tmp = ft_strdup(vault->west_texture);
-	free(vault->west_texture);
-	vault->west_texture = ft_strtrim(tmp, " \n");
+	tmp = ft_strdup(data->west_texture);
+	free(data->west_texture);
+	data->west_texture = ft_strtrim(tmp, " \n");
 	free(tmp);
-	tmp = ft_strdup(vault->east_texture);
-	free(vault->east_texture);
-	vault->east_texture = ft_strtrim(tmp, " \n");
+	tmp = ft_strdup(data->east_texture);
+	free(data->east_texture);
+	data->east_texture = ft_strtrim(tmp, " \n");
 	free(tmp);
 }

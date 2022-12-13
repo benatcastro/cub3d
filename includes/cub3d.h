@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 03:09:30 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/13 06:53:03 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/13 07:21:41 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_color
 	int		color_b;
 }	t_color;
 
-typedef struct s_vault
+typedef struct s_data
 {
 	char		*north_texture;
 	char		*south_texture;
@@ -46,23 +46,23 @@ typedef struct s_vault
 	char		compass;
 	int			init_x;
 	int			init_y;
-}	t_vault;
+}	t_data;
 
 /* User input errors */
-int		init_cub3d(int argc, char **argv);
+int		init_cub3d(int argc, char **argv, t_data *data);
 int		ft_input_errors(int argc, char *file);
-int		ft_file_errors(t_file *file, t_vault *vault, t_color *color);
-int		ft_fill_data(t_vault *vault, char *line);
+int		ft_file_errors(t_file *file, t_data *data, t_color *color);
+int		ft_fill_data(t_data *data, char *line);
 int		ft_invalidmap_line(char **file_content);
-int		ft_create_map(t_vault *vault, char **file_content);
-int		ft_checklimits(t_vault *vault, int i, int j);
-int		ft_invalidcolor_line(t_vault *vault, t_color *color, char **content);
+int		ft_create_map(t_data *data, char **file_content);
+int		ft_checklimits(t_data *data, int i, int j);
+int		ft_invalidcolor_line(t_data *data, t_color *color, char **content);
 char	*ft_get_next_line(int fd);
 
 /* Different general utilities functions */
-void	ft_freedata(t_vault *vault);
-void	ft_init_structs(t_vault *vault, t_color *color);
-void	ft_trim_data(t_vault *vault);
-int		ft_start(t_vault *vault);
-void	ft_color_res(t_vault *vault);
+void	ft_freedata(t_data *data);
+void	ft_init_structs(t_data *data, t_color *color);
+void	ft_trim_data(t_data *data);
+int		ft_start(t_data *data);
+void	ft_color_res(t_data *data);
 #endif

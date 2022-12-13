@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   textures_initial_errors.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 20:21:36 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/09/01 20:24:25 by aalvarez         ###   ########.fr       */
+/*   Updated: 2022/12/13 07:13:19 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cubed.h"
+#include "cub3d.h"
 #include <stdlib.h>
 
 static int	ft_isvalid_route(char *line)
@@ -36,31 +36,31 @@ static int	ft_isvalid_route(char *line)
 	return (free(tmp), 0);
 }
 
-int	ft_fill_data(t_vault *vault, char *line)
+int	ft_fill_data(t_data *data, char *line)
 {
 	if (!ft_strncmp(line, "NO", 2))
 	{
-		if (vault->north_texture || ft_isvalid_route(line))
+		if (data->north_texture || ft_isvalid_route(line))
 			return (free(line), 1);
-		vault->north_texture = ft_substr(line, 2, (ft_strlen(line) - 2));
+		data->north_texture = ft_substr(line, 2, (ft_strlen(line) - 2));
 	}
 	if (!ft_strncmp(line, "SO", 2))
 	{
-		if (vault->south_texture || ft_isvalid_route(line))
+		if (data->south_texture || ft_isvalid_route(line))
 			return (free(line), 1);
-		vault->south_texture = ft_substr(line, 2, (ft_strlen(line) - 2));
+		data->south_texture = ft_substr(line, 2, (ft_strlen(line) - 2));
 	}
 	if (!ft_strncmp(line, "WE", 2))
 	{
-		if (vault->west_texture || ft_isvalid_route(line))
+		if (data->west_texture || ft_isvalid_route(line))
 			return (free(line), 1);
-		vault->west_texture = ft_substr(line, 2, (ft_strlen(line) - 2));
+		data->west_texture = ft_substr(line, 2, (ft_strlen(line) - 2));
 	}
 	if (!ft_strncmp(line, "EA", 2))
 	{
-		if (vault->east_texture || ft_isvalid_route(line))
+		if (data->east_texture || ft_isvalid_route(line))
 			return (free(line), 1);
-		vault->east_texture = ft_substr(line, 2, (ft_strlen(line) - 2));
+		data->east_texture = ft_substr(line, 2, (ft_strlen(line) - 2));
 	}
 	return (free(line), 0);
 }

@@ -6,20 +6,20 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 01:05:27 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/12/13 06:51:03 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/13 07:13:19 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stdlib.h>
 
-static void	ft_create_trgb(t_vault *vault, t_color *color, int check)
+static void	ft_create_trgb(t_data *data, t_color *color, int check)
 {
 	if (check == 1)
-		vault->floor = 1 << 24 | color->color_r << 16
+		data->floor = 1 << 24 | color->color_r << 16
 			| color->color_g << 8 | color->color_b;
 	else
-		vault->ceiling = 1 << 24 | color->color_r << 16
+		data->ceiling = 1 << 24 | color->color_r << 16
 			| color->color_g << 8 | color->color_b;
 }
 
@@ -48,7 +48,7 @@ static int	ft_check_rgb_value(t_color *color, char *line, int color_len)
 	return (color_start += color_len + 1, rgb_checker++, free(tmp), 0);
 }
 
-static int	ft_color_values(t_vault *vault, t_color *color, char *line, int ch)
+static int	ft_color_values(t_data *data, t_color *color, char *line, int ch)
 {
 	int	i;
 	int	color_len;
@@ -70,14 +70,14 @@ static int	ft_color_values(t_vault *vault, t_color *color, char *line, int ch)
 			if (ft_check_rgb_value(color, line, color_len))
 				return (free(line), 1);
 			if (color_n == 3)
-				ft_create_trgb(vault, color, ch);
+				ft_create_trgb(data, color, ch);
 			color_len = -1;
 		}
 	}
 	return (free(line), 0);
 }
 
-int	ft_invalidcolor_line(t_vault *vault, t_color *color, char **content)
+int	ft_invalidcolor_line(t_data *data, t_color *color, char **content)
 {
 	char	*tmp;
 	int		i;
@@ -89,18 +89,18 @@ int	ft_invalidcolor_line(t_vault *vault, t_color *color, char **content)
 		if (*tmp == 'F')
 		{
 			if ((color->floor_integer != -1)
-				|| (ft_color_values(vault, color, ft_strtrim(tmp, "F "), 1)))
+				|| (ft_color_values(data, color, ft_strtrim(tmp, "F "), 1)))
 				return (free(tmp), 1);
 		}
 		if (*tmp == 'C')
 		{
 			if ((color->ceiling_integer != -1)
-				|| (ft_color_values(vault, color, ft_strtrim(tmp, "C "), 2)))
+				|| (ft_color_values(data, color, ft_strtrim(tmp, "C "), 2)))
 				return (free(tmp), 1);
 		}
 		free(tmp);
 	}
-	if (vault->floor == -1 || vault->ceiling == -1)
+	if (data->floor == -1 || data->ceiling == -1)
 		return (free(tmp), 1);
 	return (0);
 }

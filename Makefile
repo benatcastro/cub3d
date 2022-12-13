@@ -10,7 +10,7 @@ CC 				=	gcc
 RM				=	rm -rf
 MKDIR			=	mkdir -p
 ################FLAGS##########################
-CFLAGS			=	-Wall -Werror -Wextra #$(SANITIZE)
+CFLAGS			=	-Wall -Werror -Wextra# $(SANITIZE)
 SANITIZE 		=	-fsanitize=address -g3
 LIBFLAG			=	$(LIBRARIES)/*
 INCFLAG			=	-I includes/ -I src/mlx/include/
@@ -45,7 +45,7 @@ PROJECT_DIR		=	cub3d
 
 ##############PROJECT OBJS#############
 42LIB_OBJS		:=	$(wildcard $(OBJDIR)/$(42LIB_DIR)/*.o)
-PROJECT_OBJS	:=	$(wildcard $(OBJDIR)/$(PROJECT_DIR)/*.o)
+PROJECT_OBJS	:=	$(wildcard $(OBJDIR)/$(PROJECT_DIR)/*.o) $(wildcard $(OBJDIR)/$(PROJECT_DIR)/init/*.o)
 DANAE_OBJS		:=	$(wildcard $(OBJDIR)/$(DANAE_DIR)/*.o) $(wildcard $(OBJDIR)/$(DANAE_DIR)/raycasting/*.o)
 #############MLX VARS COMPILATION#######################
 MLXOS			?=
@@ -63,7 +63,7 @@ MLXOBJS			?=
 #$(info MLXSRCS=$(MLXSRCS))
 #$(info MLXSOBJS=$(MLXOBJS))
 #$(info PROJECT_OBJS=$(PROJECT_OBJS))
-$(info dane_objS=$(DANAE_OBJS))
+#$(info dane_objS=$(DANAE_OBJS))
 #$(info EXECPT_DIRS=$(EXCEPT_DIRS))
 #$(info EXCEPT_FILES=$(EXCEPT_FILES))
 #$(info SRCS= $(SRCS))
@@ -71,25 +71,22 @@ $(info dane_objS=$(DANAE_OBJS))
 all: $(NAME)
 
 
-$(NAME): $(PROJECT_OBJS) $(MLX) $(DANAE) $(DANAE_OBJS) $(42LIB) $(42LIB_OBJS) $(OBJS)
+$(NAME): $(OBJS) $(42LIB) $(DANAE)
 	$(CC) $(CFLAGS) $(PROJECT_OBJS) $(INCFLAG) $(LIBFLAG) $(MLXFlAG) -o $(NAME)
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c
-	$(MKDIR) $(@D)
-	$(CC) $(CFLAGS) $(INCFLAG) -c $< -o $@
+
+$(DANAE): $(DANAE_OBJS) $(OBJS)
+	$(MKDIR) $(LIBRARIES)
+	$(AR) $(DANAE) $(DANAE_OBJS)
+	make -C mlx/
 
 $(42LIB): $(42LIB_OBJS) $(OBJS)
 	$(MKDIR) $(LIBRARIES)
 	$(AR) $(42LIB) $(42LIB_OBJS)
 
-$(DANAE): $(DANAE_OBJS) $(OBJS)
-	$(MKDIR) $(LIBRARIES)
-	$(AR) $(DANAE) $(DANAE_OBJS)
-
-$(MLX):
-	$(MKDIR) libraries/
-	make -C mlx/
-
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	$(MKDIR) $(@D)
+	$(CC) $(CFLAGS) $(INCFLAG) -c $< -o $@
 clean:
 	$(RM) $(OBJDIR)
 	make clean -C mlx

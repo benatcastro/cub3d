@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:40:01 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/12/13 05:44:13 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/13 07:46:58 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(const char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+int		ft_isempty(const char *str);
+
 
 /* Linked list oriented functions */
 t_list	*ft_lstnew(void	*content);
@@ -77,6 +79,7 @@ int		ft_chr_in_set(char c, const char *set);
 char	**ft_doublestrdup(const char **str);
 int		ft_doublestrlen(const char **str);
 int		ft_doublefree(char **str);
+int		ft_printdouble(char **str);
 int		ft_strcmp(char *s1, char *s2);
 
 #endif

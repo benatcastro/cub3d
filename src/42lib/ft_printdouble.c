@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dn_init.c                                          :+:      :+:    :+:   */
+/*   ft_printdouble.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/13 02:51:14 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/13 07:28:24 by becastro         ###   ########.fr       */
+/*   Created: 2022/12/13 07:30:08 by becastro          #+#    #+#             */
+/*   Updated: 2022/12/13 07:48:04 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "danae.h"
-#include "structs.h"
+#include "libft.h"
+#include <stdio.h>
 
-
-void	dn_init(u_int32_t height, u_int32_t width, char *title)
+int	ft_printdouble(char **str)
 {
-	t_frame	frame;
+	int	i;
 
-	frame.mlx->mlx = mlx_init(width, height, title, true);
-	if (!frame.mlx)
-		dn_error();
-	frame.mlx->mlx_img = mlx_new_image(frame.mlx->mlx, width, height);
-	mlx_image_to_window(frame.mlx->mlx, frame.mlx->mlx_img, width, height);
-	// mlx_loop_hook(mlx, NULL, NULL);
-	mlx_loop(frame.mlx->mlx);
+	if (!str || str[0])
+		return ((void)printf("Print err\n"), 1);
+	i = -1;
+	while (str[++i])
+		printf("%s", str[i]);
+	return (i);
 }

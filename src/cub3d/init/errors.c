@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 17:45:21 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/12/13 06:57:08 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/13 08:11:15 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,35 +51,35 @@ static int	ft_isvalid_line(const char *line)
 	return (0);
 }
 
-static int	ft_isvalid_file(t_vault *vault, t_color *color, char **file_content)
+static int	ft_isvalid_file(t_data *data, t_color *color, char **file_content)
 {
 	int	i;
 
 	i = -1;
-	ft_init_structs(vault, color);
+	ft_init_structs(data, color);
 	while (file_content[++i])
-		if (ft_fill_data(vault, ft_strtrim(file_content[i], " \n")))
+		if (ft_fill_data(data, ft_strtrim(file_content[i], " \n")))
 			return (1);
-	if (!vault->north_texture || !vault->south_texture
-		|| !vault->west_texture || !vault->east_texture)
+	if (!data->north_texture || !data->south_texture
+		|| !data->west_texture || !data->east_texture)
 		return (1);
 	if (ft_invalidmap_line(file_content))
 		return (1);
-	if (ft_invalidcolor_line(vault, color, file_content))
+	if (ft_invalidcolor_line(data, color, file_content))
 		return (1);
-	ft_trim_data(vault);
-	if (open(vault->north_texture, O_RDONLY) < 0
-		|| open(vault->south_texture, O_RDONLY) < 0
-		|| open(vault->west_texture, O_RDONLY) < 0
-		|| open(vault->east_texture, O_RDONLY) < 0)
+	ft_trim_data(data);
+	if (open(data->north_texture, O_RDONLY) < 0
+		|| open(data->south_texture, O_RDONLY) < 0
+		|| open(data->west_texture, O_RDONLY) < 0
+		|| open(data->east_texture, O_RDONLY) < 0)
 		return (perror("Error "), 1);
-	if (ft_create_map(vault, file_content))
+	if (ft_create_map(data, file_content))
 		return (1);
-	vault->compass = vault->map[vault->init_y][vault->init_x];
+	data->compass = data->map[data->init_y][data->init_x];
 	return (0);
 }
 
-int	ft_file_errors(t_file *file, t_vault *vault, t_color *color)
+int	ft_file_errors(t_file *file, t_data *data, t_color *color)
 {
 	char	**file_content;
 	int		i;
@@ -99,8 +99,8 @@ int	ft_file_errors(t_file *file, t_vault *vault, t_color *color)
 		}
 	}
 	file_content[i] = 0;
-	if (ft_isvalid_file(vault, color, file_content))
-		return (ft_freedata(vault), ft_doublefree(file_content),
+	if (ft_isvalid_file(data, color, file_content))
+		return (ft_freedata(data), ft_doublefree(file_content),
 			printf("Error : %s\n", strerror(22)));
 	return (free(file->file), ft_doublefree(file_content), 0);
 }

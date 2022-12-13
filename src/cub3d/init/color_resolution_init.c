@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 01:05:27 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/12/13 06:54:50 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/13 07:13:19 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,23 @@ void	ft_swap(int *a, int *b)
 	*b = tmp;
 }
 
-void	ft_color_res(t_vault *vault)
+void	ft_color_res(t_data *data)
 {
-	(void)vault;
-	// vault->rx = 1920;
-	// vault->ry = 1080;
+	(void)data;
+	// data->rx = 1920;
+	// data->ry = 1080;
 }
 
-void	ft_init(t_vault *vault)
+void	ft_init(t_data *data)
 {
-	(void)vault;
-	// vault->rx = 0;
-	// vault->ry = 0;
-	// vault->data.img = NULL;
-	// vault->texture[0].img = NULL;
-	// vault->texture[1].img = NULL;
-	// vault->texture[2].img = NULL;
-	// vault->texture[3].img = NULL;
-	// vault->data.mlx_win = NULL;
-	// ft_swap(&vault->init_x, &vault->init_y);
+	(void)data;
+	// data->rx = 0;
+	// data->ry = 0;
+	// data->data.img = NULL;
+	// data->texture[0].img = NULL;
+	// data->texture[1].img = NULL;
+	// data->texture[2].img = NULL;
+	// data->texture[3].img = NULL;
+	// data->data.mlx_win = NULL;
+	// ft_swap(&data->init_x, &data->init_y);
 }

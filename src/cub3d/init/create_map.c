@@ -6,30 +6,30 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 01:12:06 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/12/13 06:55:02 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/13 07:13:19 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stdlib.h>
 
-static int	ft_parse_map(t_vault *vault)
+static int	ft_parse_map(t_data *data)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (++i < ft_doublestrlen((const char **)vault->map) - 1)
+	while (++i < ft_doublestrlen((const char **)data->map) - 1)
 	{
 		j = 0;
-		while (vault->map[i][++j])
+		while (data->map[i][++j])
 		{
-			if (ft_checklimits(vault, i, j))
+			if (ft_checklimits(data, i, j))
 				return (1);
-			else if (ft_chr_in_set(vault->map[i][j], "NSWE"))
+			else if (ft_chr_in_set(data->map[i][j], "NSWE"))
 			{
-				vault->init_x = j;
-				vault->init_y = i;
+				data->init_x = j;
+				data->init_y = i;
 			}
 		}
 	}
@@ -77,7 +77,7 @@ static int	ft_map_size(char **file_content)
 	return (ft_actual_size(tmp));
 }
 
-int	ft_create_map(t_vault *vault, char **file_content)
+int	ft_create_map(t_data *data, char **file_content)
 {
 	int		i;
 	int		j;
@@ -85,7 +85,7 @@ int	ft_create_map(t_vault *vault, char **file_content)
 
 	if (ft_map_size(file_content) == -1)
 		return (1);
-	vault->map = (char **)ft_calloc((ft_map_size(file_content) + 1),
+	data->map = (char **)ft_calloc((ft_map_size(file_content) + 1),
 			sizeof(char *));
 	i = -1;
 	while (file_content[++i])
@@ -95,13 +95,13 @@ int	ft_create_map(t_vault *vault, char **file_content)
 		{
 			j = -1;
 			while (++j < ft_map_size(file_content))
-				vault->map[j] = ft_strdup(file_content[i++]);
-			vault->map[j] = 0;
+				data->map[j] = ft_strdup(file_content[i++]);
+			data->map[j] = 0;
 			break ;
 		}
 		free(tmp);
 	}
-	if (ft_parse_map(vault))
+	if (ft_parse_map(data))
 		return (free(tmp), 1);
 	return (free(tmp), 0);
 }
