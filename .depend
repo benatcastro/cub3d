@@ -1,2 +1,0 @@
-main.o: src/cub3d/main.c includes/structs.h includes/libft.h \
-  includes/mlx.h includes/mlx_mac.h includes/mlx_linux.h

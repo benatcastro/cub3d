@@ -10,11 +10,11 @@ CC 				=	gcc
 RM				=	rm -rf
 MKDIR			=	mkdir -p
 ################FLAGS##########################
-CFLAGS			=	-Wall -Werror -Wextra
+CFLAGS			=	-Wall -Werror -Wextra $(SANITIZE)
 SANITIZE 		=	-fsanitize=address -g3
 LIBFLAG			=	$(LIBRARIES)/*
-INCFLAG			=	-I includes/ -I src/mlx_darwin/
-MLXFlAG			=	-lglfw
+INCFLAG			=	-I includes/ -I src/mlx/include/
+MLXFlAG			=	-lglfw -L "/Users/$$USER/.brew/opt/glfw/lib/"
 
 ##########EXCEPTIONS###########
 EXCEPT_FILES	=	test.c
@@ -46,7 +46,7 @@ PROJECT_DIR		=	cub3d
 ##############PROJECT OBJS#############
 42LIB_OBJS		:=	$(wildcard $(OBJDIR)/$(42LIB_DIR)/*.o)
 PROJECT_OBJS	:=	$(wildcard $(OBJDIR)/$(PROJECT_DIR)/*.o)
-DANAE_OBJS		:=	$(wildcard $(OBJDIR)/$(DANAE_DIR)/*.o)
+DANAE_OBJS		:=	$(wildcard $(OBJDIR)/$(DANAE_DIR)/*.o) $(wildcard $(OBJDIR)/$(DANAE_DIR)/raycasting/*.o)
 #############MLX VARS COMPILATION#######################
 MLXOS			?=
 MLXDIR			?=
@@ -71,7 +71,7 @@ $(info dane_objS=$(DANAE_OBJS))
 all: $(NAME)
 
 
-$(NAME): $(PROJECT_OBJS) $(MLX) $(DANAE) $(42LIB) $(OBJS)
+$(NAME): $(PROJECT_OBJS) $(MLX) $(DANAE) $(DANAE_OBJS) $(42LIB) $(42LIB_OBJS) $(OBJS)
 	$(CC) $(CFLAGS) $(PROJECT_OBJS) $(INCFLAG) $(LIBFLAG) $(MLXFlAG) -o $(NAME)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c

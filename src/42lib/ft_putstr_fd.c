@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:55:34 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/08/17 20:04:57 by aalvarez         ###   ########.fr       */
+/*   Updated: 2022/12/13 05:43:45 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 /**
  * @brief writes a string on a fd.
- * 
+ *
  * @param c string to write.
  * @param fd fd to be written.
  */
-void	ft_putstr_fd(char *s, int fd)
+void	ft_putstr_fd(const char *s, int fd)
 {
 	while (*s)
 	{

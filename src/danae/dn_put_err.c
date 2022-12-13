@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dn_render_frame.c                                  :+:      :+:    :+:   */
+/*   dn_put_err.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/13 02:45:17 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/13 06:19:31 by becastro         ###   ########.fr       */
+/*   Created: 2022/12/13 06:18:26 by becastro          #+#    #+#             */
+/*   Updated: 2022/12/13 06:18:50 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "danae.h"
 
-void	dn_render_frame(void *frame_info)
+
+void	dn_error(void)
 {
-	(void)frame_info;
-	//todox
+	ft_putstr_fd(mlx_strerror(mlx_errno), 2);
 }
