@@ -18,7 +18,7 @@ MLXFlAG			=	-lglfw
 
 ##########EXCEPTIONS###########
 EXCEPT_FILES	=	test.c
-EXCEPT_DIRS		=	mlx_darwin mlx_linux
+EXCEPT_DIRS		=	parsing
 #########DIRECTORY DECLARATION###
 LIBRARIES		=	libraries
 OBJDIR			=	objs
