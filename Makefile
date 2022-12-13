@@ -1,26 +1,25 @@
 NAME			=	cub3d
 42LIB			=	libraries/42lib.a
+DANAE			=	libraries/danae.a
 UNAME			=	$(shell uname)
 MLX				=	libraries/mlx.a
 
 ## COMPILING AND LINKING RELATED VARIABLES ##
 AR				=	ar rc
 CC 				=	gcc
-CFLAGS			=	-Wall -Werror -Wextra
-SANITIZE 		=	-fsanitize=address -g3
-LIBFLAG		=	$(LIBRARIES)/*
-INCFLAG			=	-I $(INCDIR)/
 RM				=	rm -rf
 MKDIR			=	mkdir -p
-#############################################
-
-INCLUDES 		=	-I includes/	\
+################FLAGS##########################
+CFLAGS			=	-Wall -Werror -Wextra
+SANITIZE 		=	-fsanitize=address -g3
+LIBFLAG			=	$(LIBRARIES)/*
+INCFLAG			=	-I includes/ -I src/mlx_darwin/
+MLXFlAG			=	-lglfw
 
 ##########EXCEPTIONS###########
 EXCEPT_FILES	=	test.c
 EXCEPT_DIRS		=	mlx_darwin mlx_linux
 #########DIRECTORY DECLARATION###
-INCDIR			=	includes
 LIBRARIES		=	libraries
 OBJDIR			=	objs
 SRCDIR			=	src
@@ -41,12 +40,13 @@ OBJS			:=	$(patsubst %.c, $(OBJDIR)%.o, $(shell echo $(SRCS) | sed 's/$(SRCDIR)/
 DEP				:=	$(subst $(OBJDIR), $(DEPDIR), $(OBJS:.o=.d))
 ##############PROJECT DIRS#############
 42LIB_DIR		=	42lib
+DANAE_DIR		=	danae
 PROJECT_DIR		=	cub3d
 
 ##############PROJECT OBJS#############
 42LIB_OBJS		:=	$(wildcard $(OBJDIR)/$(42LIB_DIR)/*.o)
 PROJECT_OBJS	:=	$(wildcard $(OBJDIR)/$(PROJECT_DIR)/*.o)
-
+DANAE_OBJS		:=	$(wildcard $(OBJDIR)/$(DANAE_DIR)/*.o)
 #############MLX VARS COMPILATION#######################
 MLXOS			?=
 MLXDIR			?=
@@ -63,15 +63,16 @@ MLXOBJS			?=
 #$(info MLXSRCS=$(MLXSRCS))
 #$(info MLXSOBJS=$(MLXOBJS))
 #$(info PROJECT_OBJS=$(PROJECT_OBJS))
-
+$(info dane_objS=$(DANAE_OBJS))
 #$(info EXECPT_DIRS=$(EXCEPT_DIRS))
 #$(info EXCEPT_FILES=$(EXCEPT_FILES))
 #$(info SRCS= $(SRCS))
 #$(info OBJS= $(OBJS))
-all: $(NAME) $(MLX) $(42LIB)
+all: $(NAME)
 
-$(NAME): $(OBJS) $(PROJECT_OBJS) $(42LIB)
-	$(CC) $(CFLAGS) $(PROJECT_OBJS) $(INCFLAG) $(LIBFLAG) -o $(NAME)
+
+$(NAME): $(PROJECT_OBJS) $(MLX) $(DANAE) $(42LIB) $(OBJS)
+	$(CC) $(CFLAGS) $(PROJECT_OBJS) $(INCFLAG) $(LIBFLAG) $(MLXFlAG) -o $(NAME)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	$(MKDIR) $(@D)
@@ -81,8 +82,14 @@ $(42LIB): $(42LIB_OBJS) $(OBJS)
 	$(MKDIR) $(LIBRARIES)
 	$(AR) $(42LIB) $(42LIB_OBJS)
 
+$(DANAE): $(DANAE_OBJS) $(OBJS)
+	$(MKDIR) $(LIBRARIES)
+	$(AR) $(DANAE) $(DANAE_OBJS)
+
 $(MLX):
+	$(MKDIR) libraries/
 	make -C src/mlx_darwin
+
 
 $(MLXOS):
 ifeq ($(UNAME), Darwin)

@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   structs.h                                          :+:      :+:    :+:   */
+/*   danae.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/10 18:02:45 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/13 03:08:28 by becastro         ###   ########.fr       */
+/*   Created: 2022/12/13 02:50:34 by becastro          #+#    #+#             */
+/*   Updated: 2022/12/13 03:19:54 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCTS_H
-# define STRUCTS_H
+#ifndef DANAE_H
+# define DANAE_H
 
-typedef struct s_mlx
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-}	t_mlx;
-typedef struct s_frame
-{
-	struct s_mlx	mlx;
-}	t_frame;
+# include <stdio.h>
+# include "mlx_darwin.h"
+# include "libft.h"
+# include "struct.h"
+
+void	dn_init(u_int32_t height, u_int32_t width, char *title);
+void	dn_init_loop(void);
+void	dn_render_frame(void *frame_info);
 
 #endif

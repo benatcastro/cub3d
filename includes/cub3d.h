@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx.h                                              :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/12 02:12:56 by bena              #+#    #+#             */
-/*   Updated: 2022/12/13 02:06:33 by becastro         ###   ########.fr       */
+/*   Created: 2022/12/13 03:09:30 by becastro          #+#    #+#             */
+/*   Updated: 2022/12/13 03:21:12 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_H
-# define MLX_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
-# include "src/mlx_darwin/mlx.h"
-# include "src/mlx_linux/mlx.h"
+# define WIDTH	1920
+# define HEIGHT	1080
+
 #endif
