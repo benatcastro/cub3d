@@ -6,13 +6,14 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 03:09:30 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/13 06:46:05 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/13 06:53:03 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include "libft.h"
 # define WIDTH	1920
 # define HEIGHT	1080
 # define ENOTXPM "File has not an xpm extension"
@@ -48,6 +49,7 @@ typedef struct s_vault
 }	t_vault;
 
 /* User input errors */
+int		init_cub3d(int argc, char **argv);
 int		ft_input_errors(int argc, char *file);
 int		ft_file_errors(t_file *file, t_vault *vault, t_color *color);
 int		ft_fill_data(t_vault *vault, char *line);

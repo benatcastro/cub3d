@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 17:45:21 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/09/21 13:34:26 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/12/13 06:57:08 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cubed.h"
+#include "cub3d.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>

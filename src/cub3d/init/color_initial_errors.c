@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   color_initial_errors.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 01:05:27 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/09/21 17:00:39 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/12/13 06:51:03 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cubed.h"
+#include "cub3d.h"
 #include <stdlib.h>
 
 static void	ft_create_trgb(t_vault *vault, t_color *color, int check)

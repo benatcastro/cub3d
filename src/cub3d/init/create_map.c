@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 01:12:06 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/09/21 11:43:44 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/12/13 06:55:02 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cubed.h"
+#include "cub3d.h"
 #include <stdlib.h>
 
 static int	ft_parse_map(t_vault *vault)

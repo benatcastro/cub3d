@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   cubed.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 13:38:28 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/09/21 13:59:37 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/12/13 06:56:53 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cubed.h"
+#include "cub3d.h"
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <string.h>
 
-int	main(int argc, char **argv)
+int	init_cub3d(int argc, char **argv)
 {
 	t_file	file;
 	t_vault	vault;

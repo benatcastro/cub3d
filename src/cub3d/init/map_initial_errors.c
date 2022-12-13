@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_initial_errors.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 20:18:45 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/09/01 20:21:06 by aalvarez         ###   ########.fr       */
+/*   Updated: 2022/12/13 06:57:27 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cubed.h"
+#include "cub3d.h"
 #include <stdlib.h>
 
 static int	ft_syntax_errors(char **file)

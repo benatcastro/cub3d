@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_initial_errors.c                             :+:      :+:    :+:   */
+/*   color_resolution_init.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalvarez <aalvarez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 01:05:27 by aalvarez          #+#    #+#             */
-/*   Updated: 2022/09/21 17:00:39 by adel-cor         ###   ########.fr       */
+/*   Updated: 2022/12/13 06:54:50 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cubed.h"
+#include "cub3d.h"
 
 void	ft_swap(int *a, int *b)
 {
@@ -23,19 +23,21 @@ void	ft_swap(int *a, int *b)
 
 void	ft_color_res(t_vault *vault)
 {
-	vault->rx = 1920;
-	vault->ry = 1080;
+	(void)vault;
+	// vault->rx = 1920;
+	// vault->ry = 1080;
 }
 
 void	ft_init(t_vault *vault)
 {
-	vault->rx = 0;
-	vault->ry = 0;
-	vault->data.img = NULL;
-	vault->texture[0].img = NULL;
-	vault->texture[1].img = NULL;
-	vault->texture[2].img = NULL;
-	vault->texture[3].img = NULL;
-	vault->data.mlx_win = NULL;
-	ft_swap(&vault->init_x, &vault->init_y);
+	(void)vault;
+	// vault->rx = 0;
+	// vault->ry = 0;
+	// vault->data.img = NULL;
+	// vault->texture[0].img = NULL;
+	// vault->texture[1].img = NULL;
+	// vault->texture[2].img = NULL;
+	// vault->texture[3].img = NULL;
+	// vault->data.mlx_win = NULL;
+	// ft_swap(&vault->init_x, &vault->init_y);
 }

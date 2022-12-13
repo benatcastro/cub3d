@@ -10,7 +10,7 @@ CC 				=	gcc
 RM				=	rm -rf
 MKDIR			=	mkdir -p
 ################FLAGS##########################
-CFLAGS			=	-Wall -Werror -Wextra $(SANITIZE)
+CFLAGS			=	-Wall -Werror -Wextra #$(SANITIZE)
 SANITIZE 		=	-fsanitize=address -g3
 LIBFLAG			=	$(LIBRARIES)/*
 INCFLAG			=	-I includes/ -I src/mlx/include/
