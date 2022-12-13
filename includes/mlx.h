@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   mlx.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 02:12:56 by bena              #+#    #+#             */
-/*   Updated: 2022/12/12 02:14:05 by bena             ###   ########.fr       */
+/*   Updated: 2022/12/13 02:06:33 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MLX_H
 # define MLX_H
 
-# include "mlx_mac.h"
-# include "mlx_linux.h"
+# include "src/mlx_darwin/mlx.h"
+# include "src/mlx_linux/mlx.h"
 #endif

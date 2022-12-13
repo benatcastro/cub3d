@@ -31,7 +31,7 @@
 
 #define	MLX_H
 
-#include "src/mlx_linux/mlx_int.h"
+#include "mlx_int.h"
 void	*mlx_init();
 /*
 **  needed before everything else.

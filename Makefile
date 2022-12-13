@@ -8,7 +8,7 @@ AR				=	ar rc
 CC 				=	gcc
 CFLAGS			=	-Wall -Werror -Wextra
 SANITIZE 		=	-fsanitize=address -g3
-LIBFLAGS		=	$(LIBRARIES)/*
+LIBFLAG		=	$(LIBRARIES)/*
 INCFLAG			=	-I $(INCDIR)/
 RM				=	rm -rf
 MKDIR			=	mkdir -p
@@ -54,9 +54,9 @@ MLXOSRCS		?=
 MLXOBJS			?=
 
 #$(addprefix $(OBJDIR)/, $(OBJDIRS),
-$(info DEP=$(DEP))
-$(info DEPDIR=$(DEPDIR))
-$(info SRCDEP=$(SRCDEP))
+#$(info DEP=$(DEP))
+#$(info DEPDIR=$(DEPDIR))
+#$(info SRCDEP=$(SRCDEP))
 #$(info PROJECT_OBJS=$(PROJECT_OBJS))
 #$(info MLXOS=$(MLXOS))
 #$(info MLXDIR=$(MLXDIR))
@@ -68,26 +68,23 @@ $(info SRCDEP=$(SRCDEP))
 #$(info EXCEPT_FILES=$(EXCEPT_FILES))
 #$(info SRCS= $(SRCS))
 #$(info OBJS= $(OBJS))
-all: $(NAME)
+all: $(NAME) $(MLX) $(42LIB)
 
 $(NAME): $(OBJS) $(PROJECT_OBJS) $(42LIB)
-	$(CC) $(CFLAGS) $(PROJECT_OBJS) $(INCFLAG) -o $(NAME)
+	$(CC) $(CFLAGS) $(PROJECT_OBJS) $(INCFLAG) $(LIBFLAG) -o $(NAME)
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c $(DEP)
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
 	$(MKDIR) $(@D)
-	$(CC) $(CFLAGS) $(INCFLAG) -c $^ -o $@
+	$(CC) $(CFLAGS) $(INCFLAG) -c $< -o $@
 
-#$(42LIB): $(42LIB_OBJS) $(42LIB_OBJS)
-#	$(MKDIR) $(LIBRARIES)
-#	$(AR) $(42LIB) $(42LIB_OBJS)
+$(42LIB): $(42LIB_OBJS) $(OBJS)
+	$(MKDIR) $(LIBRARIES)
+	$(AR) $(42LIB) $(42LIB_OBJS)
 
-$(DEP): $(SRCDEP)
-	$(MKDIR) $(@D)
-	$(CC) $(CFLAGS) $(INCFLAG) -MMD $< -o $@
+$(MLX):
+	make -C src/mlx_darwin
 
-
-
-$(MlX): $(MLXOS):
+$(MLXOS):
 ifeq ($(UNAME), Darwin)
 	echo Darwin mlx
 else
@@ -109,7 +106,7 @@ endif
 
 clean:
 	$(RM) $(OBJDIR)
-
+	make clean -C src/mlx_darwin
 fclean: clean
 	$(RM) $(LIBRARIES)
 

@@ -11,14 +11,15 @@ C_SRC= mlx_xpm.c mlx_png.c mlx_string_put.c
 C_OBJ=$(C_SRC:.c=.o)
 CFLAGS=-O3
 
-NAME=../../libraries/libmlx.dylib
+NAME=../libraries/libmlx.dylib
 
-INC=-I ../../includes/
+INC=-I.
 #OPTI=-Ounchecked
-.SILENT:
+
 all: $(NAME)
 
 $(NAME): $(MODULE_OBJ) $(OBJ) $(C_OBJ)
+	mkdir -p ../libraries/
 	swiftc $(OPTI) $(INC) -o $(NAME) -emit-library $(OBJ) $(C_OBJ) -lz
 
 
