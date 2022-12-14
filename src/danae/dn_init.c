@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dn_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bena <bena@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 02:51:14 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/13 14:03:24 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/14 01:43:03 by bena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  * @param width
  * @param title
  */
-t_mlx	*dn_init(u_int32_t height, u_int32_t width, char *title)
+t_mlx	*dn_init(uint32_t height, uint32_t width, char *title)
 {
 	t_mlx	*mlx;
 
@@ -31,6 +31,5 @@ t_mlx	*dn_init(u_int32_t height, u_int32_t width, char *title)
 	mlx->addr = mlx_get_data_addr(mlx->ptr, &mlx->bpp, &mlx->ll, &mlx->endian);
 	dn_put_pixel(5, 5, 0x00FF0000, mlx);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
-
 	return (mlx);
 }
