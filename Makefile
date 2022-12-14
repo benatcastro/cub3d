@@ -10,8 +10,8 @@ CC 				=	gcc
 RM				=	rm -rf
 MKDIR			=	mkdir -p
 ################FLAGS##########################
-CFLAGS			:=	-Wall -Werror -Wextra# $(SANITIZE)
 SANITIZE 		:=	-fsanitize=address -g3
+CFLAGS			:=	-Wall -Werror -Wextra $(SANITIZE)
 LIBDIR			=	libraries
 LIBFLAG			:=	$(LIBDIR)/*
 INCFLAG			:=	-I includes/ -I src/mlx/include/
@@ -53,6 +53,7 @@ DANAE_SRC		:=	$(wildcard $(SRCDIR)/$(DANAE_DIR)/*.c) $(wildcard $(SRCDIR)/$(DANA
 DANAE_OBJS		:=	$(subst src, objs, $(DANAE_SRC:.c=.o))
 
 #$(info LIBFLAG=$(LIBFLAG))
+#$(info CFLAGS=$(CFLAGS))
 #$(info MLX=$(MLX))
 #$(info 42OBJS=$(42LIB_OBJS))
 #$(info DEPDIR=$(DEPDIR))
@@ -74,6 +75,13 @@ all: $(NAME)
 
 $(NAME): $(OBJS) $(42LIB) $(DANAE) $(DANAE_OBJS) $(MLX)
 	printf "$(B_BLU)CREATING $(NC)$(B_WHT)%s$(NC) $(B_BLU)EXECUTABLE$(NC)\n" CUB3D
+ifeq ($(UNAME), Darwin)
+	$(eval MLXFlAG := -framework OpenGL -framework AppKit)
+else
+	ifeq ($(UNAME), Linux)
+		$(eval MLXFlAG := -L.. -L%%/../lib -lXext -lX11 -lm -lbsd)
+	endif
+endif
 	$(CC) $(CFLAGS) $(PROJECT_OBJS) $(INCFLAG) $(LIBFLAG) $(MLXFlAG) -o $(NAME)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
@@ -90,6 +98,11 @@ $(DANAE): $(DANAE_OBJS) $(OBJS)
 	$(MKDIR) $(LIBDIR)
 	printf "$(B_MAG)CREATING LIBRARY$(NC) $(B_WHT)%s$(NC)\n" DANAE
 	$(AR) $(DANAE) $(DANAE_OBJS)
+
+$(MLXFlAG): $(OBJS)
+ifeq ($(UNAME), Darwin)
+	$(eval MLXFlAG := -framework OpenGL -framework AppKit)
+endif
 
 $(MLX):
 ifeq ($(UNAME), Darwin)

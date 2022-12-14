@@ -6,12 +6,11 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 06:18:26 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/13 09:48:38 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/14 18:04:34 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "danae.h"
-
 
 void	dn_error(void)
 {
