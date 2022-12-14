@@ -19,7 +19,7 @@ ifeq ($(UNAME),FreeBSD)
 	CC = clang
 endif
 
-NAME		= $(LIB_DIR)libmlx_$(UNAME).a
+NAME		= $(LIB_DIR)mlx_$(UNAME).a
 
 SRC	= mlx_init.c mlx_new_window.c mlx_pixel_put.c mlx_loop.c \
 	mlx_mouse_hook.c mlx_key_hook.c mlx_expose_hook.c mlx_loop_hook.c \

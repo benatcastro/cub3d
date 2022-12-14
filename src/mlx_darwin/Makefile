@@ -11,7 +11,7 @@ SRC_FILES_M =	mlx_new_window\
 				mlx_new_image\
 				mlx_mouse\
 
-MLX = $(LIBRARIES_DIR)libmlx.a
+MLX = $(LIBRARIES_DIR)mlx_darwin.a
 
 CC = gcc
 AR = ar rc
@@ -19,7 +19,7 @@ CC_FLAGS = -O2 -DSTRINGPUTX11
 
 LIBRARIES_DIR = ../../libraries/
 INCLUDES = -I ../../includes/ -I ../../includes/mlx/
-OBJ_DIR	=	../../objs/mlx/
+OBJ_DIR	=	../../objs/mlx_Darwin/
 # add to match string put with X11 in size and position
 SRC_C = $(addprefix $(SRC_DIR_C), $(addsuffix .c, $(SRC_FILES_C)))
 OBJ_C = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES_C)))
@@ -35,10 +35,7 @@ $(MLX) : $(OBJF) $(OBJ_C) $(OBJ_M)
 
 $(OBJ_DIR)%.o: $(SRC_DIR_C)%.c
 	@mkdir -p $(OBJ_DIR)
-	ifeq ($(fidnstring $@, warning), )
-		@echo ===========test===========
-	endif
-	@$(CC) $(CC_FLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CC_FLAGS) $(INCLUDES) -c $< -o $@
 
 $(OBJ_DIR)%.o: $(SRC_DIR_M)%.m
 	@$(CC) $(CC_FLAGS) $(INCLUDES) -c $< -o $@
