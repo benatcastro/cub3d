@@ -6,13 +6,21 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 18:08:38 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/14 20:12:46 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/14 21:58:35 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "structs.h"
 #include "danae.h"
 #include "cub3d.h"
+#include <stdlib.h> //provisional just for exit
+
+int	hook_handler(int hook, void *data)
+{
+	(void)data;
+	exit(0);//change for exit fnc
+	return (hook);
+}
 
 int	main(int argc, char *argv[])
 {
@@ -22,4 +30,8 @@ int	main(int argc, char *argv[])
 		return (0);
 	ft_printdouble(data.map);
 	dn_init(HEIGHT, WIDTH, NAME, &data);
+	dn_put_pixel(data.mlx_data, 5, 5, 0x00FF0000);
+	mlx_hook(data.mlx_data->win, 17, 0, hook_handler, &data);
+	dn_event_handler(&data);
+	mlx_loop(data.mlx_data->ptr);
 }

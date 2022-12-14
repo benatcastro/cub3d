@@ -6,13 +6,13 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 09:07:05 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/14 17:07:17 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/14 20:44:42 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "danae.h"
 
-void	dn_ray(void)
+void	dn_raycast_init(t_data data)
 {
-
+	(void)data;
 }

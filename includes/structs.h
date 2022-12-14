@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 18:02:45 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/14 20:20:01 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/14 20:47:22 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct s_file
 	char	*file;
 }	t_file;
 
-
 typedef struct s_color
 {
 	int		ceiling_integer;
@@ -61,7 +60,7 @@ typedef struct s_mlx
 	void				*img;
 	void				*addr;
 	void				*win;
-	struct s_mlx_values	values;
+	struct s_mlx_values	*values;
 }	t_mlx;
 typedef struct s_frame
 {

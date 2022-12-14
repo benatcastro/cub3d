@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dn_put_pixel.c                                     :+:      :+:    :+:   */
+/*   dn_raycast.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/13 13:12:11 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/14 21:12:16 by becastro         ###   ########.fr       */
+/*   Created: 2022/12/14 20:26:38 by becastro          #+#    #+#             */
+/*   Updated: 2022/12/14 20:32:41 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "danae.h"
+#ifndef DN_RAYCAST_H
+# define DN_RAYCAST_H
+# include <math.h>
+# include "danae.h"
+# define POV 90
 
-void	dn_put_pixel(t_mlx *mlx, uint16_t x, uint16_t y, int color)
-{
-	char	*dst;
+void	dn_raycast_init(t_data data);
 
-	dst = mlx->addr + (y * mlx->values->line_length + x
-			* (mlx->values->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
+#endif
