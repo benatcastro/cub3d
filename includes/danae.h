@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 02:50:34 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/15 15:31:43 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:08:33 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	dn_init(uint32_t height, uint32_t width, char *title, t_data *data);
 
 //render fncs
 void	dn_put_pixel(t_mlx *mlx, uint16_t x, uint16_t y, int color);
-void	dn_render_frame(void *frame_info);
+int		dn_render_frame(void *frame_info);
 
 //hook fncs
 void	dn_event_handler(t_data *data);

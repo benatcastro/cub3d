@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 18:02:45 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/15 15:24:39 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/15 15:45:11 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@ enum e_axis
 {
 	X,
 	Y,
+};
+
+enum e_compass
+{
+	NORTH,
+	SOUTH,
+	WEST,
+	EASTH,
 };
 typedef struct s_player
 {
@@ -79,6 +87,7 @@ typedef struct s_mlx
 typedef struct s_frame
 {
 	char			**map;
+	struct s_player	*player;
 	struct s_mlx	*mlx;
 }	t_frame;
 
