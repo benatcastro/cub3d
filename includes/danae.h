@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 02:50:34 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/14 21:56:24 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/15 15:31:43 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include "../src/mlx_linux/mlx.h"
 
 //init fncs
-void	dn_init_image(u_int32_t height, uint32_t width, t_data *data);
+void	dn_init_loop(t_data *data);
 void	dn_init(uint32_t height, uint32_t width, char *title, t_data *data);
 
 //render fncs
@@ -35,6 +35,7 @@ void	dn_event_handler(t_data *data);
 int		hook_handler(int hook, void *data);
 
 //utils fncs
+void	dn_screen_offset(t_mlx *mlx, uint32_t width, uint32_t height);
 void	dn_error(void);
 
 #endif

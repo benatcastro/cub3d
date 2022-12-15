@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 18:08:38 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/15 15:06:12 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/15 15:31:55 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ int	main(int argc, char *argv[])
 		return (0);
 	ft_printdouble(data.map);
 	dn_init(HEIGHT, WIDTH, NAME, &data);
-	mlx_loop(data.mlx_data->ptr);
+	dn_event_handler(&data);
+	mlx_hook(data.mlx_data->win, 17, 0, hook_handler, &data);
+	dn_init_loop(&data);
 }

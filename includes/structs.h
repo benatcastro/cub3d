@@ -6,12 +6,25 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 18:02:45 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/14 20:47:22 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/15 15:24:39 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
+# include <stdint.h>
+
+enum e_axis
+{
+	X,
+	Y,
+};
+typedef struct s_player
+{
+	double		pos[2];
+	uint32_t	tile[2];
+}	t_player;
 
 typedef struct s_data
 {
@@ -52,6 +65,7 @@ typedef struct s_mlx_values {
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		window_offset[2];
 }	t_mlx_values;
 
 typedef struct s_mlx
@@ -64,6 +78,7 @@ typedef struct s_mlx
 }	t_mlx;
 typedef struct s_frame
 {
+	char			**map;
 	struct s_mlx	*mlx;
 }	t_frame;
 
