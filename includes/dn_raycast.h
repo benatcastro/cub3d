@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 20:26:38 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/14 20:32:41 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:22:00 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@
 # include "danae.h"
 # define POV 90
 
-void	dn_raycast_init(t_data data);
+typedef struct s_raycast
+{
+	double	start_point[2];
+	double	end_point[2];
+}	t_raycast;
+
+void	dn_raycast_init(t_frame *frame);
 
 #endif

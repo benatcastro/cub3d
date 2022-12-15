@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 02:51:14 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/15 16:11:26 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:35:35 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,22 @@ void	dn_init(uint32_t height, uint32_t width, char *title, t_data *data)
 	data->mlx_data = mlx;
 }
 
-t_frame	*dn_get_frame(t_data *data)
+void	dn_get_frame(t_data *data, t_frame *frame)
 {
-	t_frame	*frame;
-
 	frame = ft_calloc(1, sizeof(t_frame));
 	frame->map = data->map;
 	frame->mlx = data->mlx_data;
-	//frame->player->pos[X] = data->init_x;
-	//frame->player->pos[Y] = data->init_y;
-	return (frame);
+	frame->player->tile[X] = data->init_x;
+	frame->player->tile[Y] = data->init_y;
 }
 
 void	dn_init_loop(t_data *data)
 {
-	mlx_loop_hook(data->mlx_data->ptr, dn_render_frame, dn_get_frame(data));
+	t_frame	*frame;
+
+	frame = ft_calloc(1, sizeof(t_frame));
+	mlx_put_image_to_window(data->mlx_data->ptr,
+		data->mlx_data->win, data->mlx_data->img, 0, 0);
+	mlx_loop_hook(data->mlx_data->ptr, dn_render_frame, frame);
 	mlx_loop(data->mlx_data->ptr);
 }
