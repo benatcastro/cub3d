@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 02:50:34 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/15 16:34:59 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:36:17 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include "../src/mlx_linux/mlx.h"
 //colors
 
-#define RED 0x00FF0000
+# define RED 0x00FF0000
 //init fncs
 void	dn_init_loop(t_data *data);
 void	dn_init(uint32_t height, uint32_t width, char *title, t_data *data);
