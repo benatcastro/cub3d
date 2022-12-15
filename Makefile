@@ -132,7 +132,7 @@ fclean: clean
 re: fclean all
 
 run: all
-	./$(NAME)
+	./$(NAME) valid/map1.cub
 
 
 .PHONY: all clean fclean re bonus

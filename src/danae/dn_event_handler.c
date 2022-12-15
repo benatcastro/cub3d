@@ -6,15 +6,13 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 20:31:05 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/14 21:57:30 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/15 11:35:58 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "danae.h"
 #include "hooks.h"
 #include <stdlib.h> //just for exit
-
-
 
 int	mouse_handler(int event, void *data)
 {
@@ -28,10 +26,7 @@ int	key_handler(int key, void *data)
 {
 	(void)data;
 	if (key == DARWIN_ESC)
-	{
-		printf("key: %d\n", key);
 		exit(0); // change for exit fnc
-	}
 	return (key);
 }
 
