@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 18:08:38 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/15 16:27:42 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/16 13:49:12 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,16 @@ int	hook_handler(int hook, void *data)
 
 int	main(int argc, char *argv[])
 {
-	t_data	data;
+	t_data	*data;
 
-	if (!init_cub3d(argc, argv, &data))
+	data = ft_calloc(1, sizeof(t_data));
+	if (!init_cub3d(argc, argv, data))
 		return (0);
-	ft_printdouble(data.map);
-	dn_init(HEIGHT, WIDTH, NAME, &data);
-	dn_event_handler(&data);
-	mlx_hook(data.mlx_data->win, 17, 0, hook_handler, &data);
-	dn_init_loop(&data);
+	ft_printdouble(data->map);
+	dn_init(HEIGHT, WIDTH, NAME, data);
+	dn_init_frame(data);
+	dn_raycast_init(data->frame_data);
+	dn_event_handler(data);
+	mlx_hook(data->mlx_data->win, 17, 0, hook_handler, data);
+	dn_init_loop(data);
 }
