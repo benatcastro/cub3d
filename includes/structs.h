@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 18:02:45 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/15 16:25:31 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/16 16:10:47 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ enum e_compass
 };
 typedef struct s_player
 {
+	char		init_view;
+	double		view;
 	double		pos[2];
 	uint32_t	tile[2];
 }	t_player;
@@ -46,6 +48,7 @@ typedef struct s_data
 	char			compass;
 	int				init_x;
 	int				init_y;
+	struct s_frame	*frame_data;
 	struct s_mlx	*mlx_data;
 }	t_data;
 typedef struct s_file
