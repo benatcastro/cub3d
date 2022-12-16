@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 18:02:45 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/16 16:10:47 by becastro         ###   ########.fr       */
+/*   Updated: 2022/12/16 21:21:05 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,10 @@ typedef struct s_mlx
 }	t_mlx;
 typedef struct s_frame
 {
-	char			**map;
-	struct s_player	*player;
-	struct s_mlx	*mlx;
+	char				**map;
+	struct s_player		*player;
+	struct s_raycast	*raycast;
+	struct s_mlx		*mlx;
 }	t_frame;
 
 #endif
