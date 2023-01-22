@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 03:09:30 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/16 14:47:09 by becastro         ###   ########.fr       */
+/*   Updated: 2023/01/22 11:23:50 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include "libft.h"
 # include "danae.h"
 # define NAME	"cub3d"
-# define WIDTH	1920
-# define HEIGHT	1080
+# define WIDTH 640
+# define HEIGHT 480
 
 # define ENOTXPM "File has not an xpm extension"
 

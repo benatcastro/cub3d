@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 02:51:14 by becastro          #+#    #+#             */
-/*   Updated: 2022/12/16 21:31:28 by becastro         ###   ########.fr       */
+/*   Updated: 2023/01/22 11:49:35 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void	dn_init_frame(t_data *data)
 
 void	dn_init_loop(t_data *data)
 {
-	mlx_put_image_to_window(data->mlx_data->ptr,
-		data->mlx_data->win, data->mlx_data->img, 0, 0);
-	// mlx_loop_hook(data->mlx_data->ptr, dn_render_frame, data->frame_data);
+
+	dn_raycast_loop(data->frame_data, data->frame_data->raycast);
+	mlx_loop_hook(data->mlx_data->ptr, dn_render_frame, data->frame_data);
 	mlx_loop(data->mlx_data->ptr);
 }
