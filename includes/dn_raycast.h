@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 20:26:38 by becastro          #+#    #+#             */
-/*   Updated: 2023/01/22 13:50:38 by becastro         ###   ########.fr       */
+/*   Updated: 2023/01/22 14:43:27 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,5 @@ typedef struct s_raycast
 	struct s_draw	*draw_data;
 }	t_raycast;
 
-void	dn_raycast_init(t_frame *frame);
 void	dn_raycast_loop(t_frame *frame, t_raycast *raycast);
 #endif
