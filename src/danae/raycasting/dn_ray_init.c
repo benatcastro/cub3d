@@ -6,11 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 09:07:05 by becastro          #+#    #+#             */
-<<<<<<< Updated upstream
-/*   Updated: 2023/01/23 14:28:34 by becastro         ###   ########.fr       */
-=======
-/*   Updated: 2023/01/23 14:01:42 by becastro         ###   ########.fr       */
->>>>>>> Stashed changes
+/*   Updated: 2023/01/23 17:19:33 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,39 +14,6 @@
 #include "dn_raycast.h"
 #include "cub3d.h"
 #include <stdlib.h>
-
-
-
-#define mapWidth 24
-#define mapHeight 24
-
-int worldMap[mapWidth][mapHeight]=
-{
-  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-};
 
 static void	dn_draw_vertical(t_frame *frame, t_raycast *rc, int x)
 {
@@ -62,16 +25,17 @@ static void	dn_draw_vertical(t_frame *frame, t_raycast *rc, int x)
 	line_height = (int)(HEIGHT / rc->perp_wall_dst);
 	draw_start = -line_height / 2 + HEIGHT / 2;
 	draw_end = line_height / 2 + HEIGHT / 2;
-	draw_pos = draw_start;
+	draw_pos = -1;
 	if (draw_start < 0)
 		draw_start = 0;
 	if (draw_end >= HEIGHT)
 		draw_end = HEIGHT - 1;
-	while (draw_pos < draw_end)
-	{
+	while (++draw_pos < draw_start)
+		dn_put_pixel(frame->mlx, x, draw_pos, ARCTIC);
+	while (++draw_pos < draw_end)
 		dn_put_pixel(frame->mlx, x, draw_pos, FLAMINGO);
-		draw_pos++;
-	}
+	while (++draw_pos < HEIGHT)
+		dn_put_pixel(frame->mlx, x, draw_pos, YELLOW);
 }
 
 static void	dn_handle_hit(t_raycast *rc, char **map)
@@ -90,8 +54,7 @@ static void	dn_handle_hit(t_raycast *rc, char **map)
 			rc->tile[Y] += rc->step[Y];
 			rc->side = 1;
 		}
-		(void)map;
-		if (worldMap[rc->tile[X]][rc->tile[Y]] > '0')
+		if (map[rc->tile[X]][rc->tile[Y]] == '1')
 			rc->hit = true;
 	}
 }
@@ -139,7 +102,7 @@ static void	dn_raycast_init(t_raycast *rc)
 	rc->plane[X] = 0;
 	rc->plane[Y] = 0.66;
 	rc->dir[X] = -1;
-	rc->dir[Y] = -1;
+	rc->dir[Y] = 0;
 }
 
 void	dn_raycast_loop	(t_frame *frame, t_raycast *rc)

@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 20:26:38 by becastro          #+#    #+#             */
-/*   Updated: 2023/01/22 14:43:27 by becastro         ###   ########.fr       */
+/*   Updated: 2023/01/23 17:14:24 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,8 @@
 # define PLANE_V	10
 # define DIR_V		10
 
-typedef struct s_draw
-{
-	int	line_lenght;
-	int	draw_start;
-	int	draw_end;
-}	t_draw;
 typedef struct s_raycast
 {
-
-	char			**map;
 	int				tile[2];
 	double			cam[2];
 	double			plane[2];
@@ -38,7 +30,8 @@ typedef struct s_raycast
 	int				step[2];
 	bool			hit;
 	int				side;
-	struct s_draw	*draw_data;
+	int				floor_color;
+	int				cellling_color;
 }	t_raycast;
 
 void	dn_raycast_loop(t_frame *frame, t_raycast *raycast);

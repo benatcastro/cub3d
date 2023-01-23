@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 02:51:14 by becastro          #+#    #+#             */
-/*   Updated: 2023/01/23 14:28:55 by becastro         ###   ########.fr       */
+/*   Updated: 2023/01/23 16:09:51 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	dn_init_frame(t_data *data)
 	frame->map = data->map;
 	frame->mlx = data->mlx_data;
 	frame->player->init_view = data->compass;
-	frame->player->pos[X] = 22;
+	frame->player->pos[X] = data->init_x;
 	frame->player->pos[Y] = data->init_y;
 	frame->player->tile[X] = data->init_x;
 	frame->player->tile[Y] = data->init_y;

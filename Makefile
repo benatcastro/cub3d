@@ -52,24 +52,6 @@ PROJECT_OBJS	:=	$(subst src, objs, $(PROJECT_SRC:.c=.o))
 DANAE_SRC		:=	$(wildcard $(SRCDIR)/$(DANAE_DIR)/*.c) $(wildcard $(SRCDIR)/$(DANAE_DIR)/raycasting/*.c)
 DANAE_OBJS		:=	$(subst src, objs, $(DANAE_SRC:.c=.o))
 
-#$(info LIBFLAG=$(LIBFLAG))
-#$(info CFLAGS=$(CFLAGS))
-#$(info MLX=$(MLX))
-#$(info 42OBJS=$(42LIB_OBJS))
-#$(info DEPDIR=$(DEPDIR))
-#$(info SRCDEP=$(SRCDEP))
-#$(info PROJECT_OBJS=$(PROJECT_OBJS))
-#$(info MLXOS=$(MLXOS))
-#$(info MLXDIR=$(MLXDIR))
-#$(info MLXSRCS=$(MLXSRCS))
-#$(info MLXSOBJS=$(MLXOBJS))
-#$(info PROJECT_OBJS=$(PROJECT_OBJS))
-#$(info dane_objS=$(DANAE_OBJS))
-#$(info EXECPT_DIRS=$(EXCEPT_DIRS))
-#$(info EXCEPT_FILES=$(EXCEPT_FILES))
-#$(info SRCS= $(SRCS))
-#$(info OBJS= $(OBJS))
-
 .SILENT:
 all: $(NAME)
 
@@ -132,7 +114,7 @@ fclean: clean
 re: fclean all
 
 run: all
-	./$(NAME) valid/map1.cub
+	./$(NAME) valid/test.cub
 
 
 .PHONY: all clean fclean re bonus

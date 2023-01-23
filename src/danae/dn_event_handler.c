@@ -6,13 +6,14 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 20:31:05 by becastro          #+#    #+#             */
-/*   Updated: 2023/01/23 14:23:21 by becastro         ###   ########.fr       */
+/*   Updated: 2023/01/23 17:05:18 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "danae.h"
 #include "hooks.h"
 #include <stdlib.h> //just for exit
+#include <math.h>
 
 int	mouse_handler(int event, void *frame)
 {
@@ -37,6 +38,8 @@ int	key_handler(int key, void *frame_ptr)
 		frame->player->pos[Y] -= 0.5;
 	if (key == D)
 		frame->player->pos[Y] += 0.5;
+	mlx_put_image_to_window(frame->mlx->ptr,
+		frame->mlx->win, frame->mlx->img, 0, 0);
 	return (key);
 }
 
