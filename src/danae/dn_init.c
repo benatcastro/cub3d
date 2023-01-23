@@ -6,7 +6,7 @@
 /*   By: becastro <becastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 02:51:14 by becastro          #+#    #+#             */
-/*   Updated: 2023/01/22 14:56:46 by becastro         ###   ########.fr       */
+/*   Updated: 2023/01/23 14:28:55 by becastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	dn_init_frame(t_data *data)
 	frame->mlx = data->mlx_data;
 	frame->player->init_view = data->compass;
 	frame->player->pos[X] = 22;
-	frame->player->pos[Y] = 12;
+	frame->player->pos[Y] = data->init_y;
 	frame->player->tile[X] = data->init_x;
 	frame->player->tile[Y] = data->init_y;
 	data->frame_data = frame;
@@ -55,7 +55,6 @@ void	dn_init_frame(t_data *data)
 
 void	dn_init_loop(t_data *data)
 {
-
 	dn_raycast_loop(data->frame_data, data->frame_data->raycast);
 	mlx_loop_hook(data->mlx_data->ptr, dn_render_frame, data->frame_data);
 	mlx_loop(data->mlx_data->ptr);

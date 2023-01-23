@@ -19,6 +19,7 @@ int	dn_render_frame(void *frame_info)
 
 	frame = (t_frame *)frame_info;
 	dn_raycast_loop(frame, frame->raycast);
+	dn_event_handler(frame);
 	mlx_put_image_to_window(frame->mlx->ptr,
 		frame->mlx->win, frame->mlx->img, 0, 0);
 	return (tick);
